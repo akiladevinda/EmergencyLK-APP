@@ -15,6 +15,8 @@ import Metrics from '../../config/Metrics';
 import Statusbar from '../../components/Statusbar/Statusbar';
 import AppStyles from '../../config/AppStyles';
 import Assets from '../../config/Assets';
+import CustomButtonBorder from '../../components/CustomButton/CustomButtonBorder';
+import CustomButtonPrimary from '../../components/CustomButton/CustomButtonPrimary';
 
 export default class MainScreen extends Component {
 
@@ -36,7 +38,12 @@ export default class MainScreen extends Component {
 
             <Image source={Assets.APP_LOGO} style={styles.appLogo}/>
             </LinearGradient>
-     
+            
+            <CustomButtonBorder title='LOGIN'/>
+
+            <Text style={styles.betweenText}> OR </Text>
+
+            <CustomButtonPrimary title='REGISTER'/>
             
             </View>
         );
@@ -58,5 +65,11 @@ const styles = StyleSheet.create({
         height:Metrics.DEVICE_HEIGHT/2.5,
         marginTop:Metrics.DEVICE_HEIGHT/10,
         resizeMode:'contain'
+    },
+    betweenText:{
+        fontFamily:AppStyles.primaryFontBold,
+        fontSize:20,
+        marginLeft:Metrics.DEVICE_WIDTH/2.2,
+        marginTop:20,
     }
 });

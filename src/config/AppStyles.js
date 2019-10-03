@@ -4,7 +4,10 @@
  */
 
 const AppStyles = {
-    primaryFont: 'sans-serif-light',
+    primaryFont: 'Montserrat-Medium',
+    primaryFontBold:'Montserrat-Bold',
+    primaryFontLight:'Montserrat-Light',
+    primaryFontExtraLight:'Montserrat-ExtraLight',
     primaryColor:'#E44D4D',
     primaryColorDark:'#5A2C2C',
     colorWhite: '#ffffff',
