@@ -7,16 +7,25 @@ import { createAppContainer } from "react-navigation";
 import { createStackNavigator } from 'react-navigation-stack';
 //All routing pages importing
 import SplashScreen from "../screens/SplashScreen/SplashScreen";
+import MainScreen from "../screens/Auth/MainScreen";
 
 //Creating Stack Navigator for All Routes in Application
 const AppNavigator = createStackNavigator({
-    SplashScreen: {
-      screen:SplashScreen,
-      navigationOptions: {  // Extra Navigation Options
-        header: null,  
-        gesturesEnabled: false 
-      },   
-    },
+//     SplashScreen: {
+//       screen:SplashScreen,
+//       navigationOptions: { 
+//         header: null,  
+//         gesturesEnabled: false 
+//       },   
+//     },
+    MainScreen: {
+        screen:MainScreen,
+        navigationOptions: { 
+          header: null,  
+          gesturesEnabled: false 
+        },   
+      },
+    
   
   });
   

@@ -13,6 +13,7 @@ import {
 import Statusbar from '../../components/Statusbar/Statusbar';
 import Assets from '../../config/Assets';
 import Metrics from '../../config/Metrics';
+import MainScreen from '../Auth/MainScreen';
 
 export default class SplashScreen extends Component {
 
@@ -20,6 +21,17 @@ export default class SplashScreen extends Component {
         super(props);
         this.state = {
         }
+    }
+
+    componentWillMount(){
+        //Simple Timeout for navigating Splash Screen -> Home Screen
+        setTimeout(() => {
+            this.props.navigation.navigate("MainScreen",{screen: MainScreen});
+          }, 2000);
+    }
+
+    componentWillUnmount(){
+
     }
 
     render() {
