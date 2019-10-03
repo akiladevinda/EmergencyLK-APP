@@ -17,12 +17,25 @@ import AppStyles from '../../config/AppStyles';
 import Assets from '../../config/Assets';
 import CustomButtonBorder from '../../components/CustomButton/CustomButtonBorder';
 import CustomButtonPrimary from '../../components/CustomButton/CustomButtonPrimary';
+import LoginScreen from './LoginScreen';
+import RegisterScreen from './RegisterScreen';
 
 export default class MainScreen extends Component {
 
     constructor(props) {
         super(props);
         this.state = {
+        }
+    }
+
+    //Button Click Listner Function
+    buttonOnClickListner = (value) => {
+        if(value == 'login'){
+            //Navigate to Login Screena
+            this.props.navigation.navigate("LoginScreen",{screen:LoginScreen})
+        }else if(value == 'register'){
+            //Navigate to register screen
+            this.props.navigation.navigate("RegisterScreen",{screen:RegisterScreen})
         }
     }
 
@@ -39,11 +52,15 @@ export default class MainScreen extends Component {
             <Image source={Assets.APP_LOGO} style={styles.appLogo}/>
             </LinearGradient>
             
-            <CustomButtonBorder title='LOGIN'/>
+            <CustomButtonBorder 
+            title='LOGIN' 
+            onPress= {()=> this.buttonOnClickListner('login')}/>
 
             <Text style={styles.betweenText}> OR </Text>
 
-            <CustomButtonPrimary title='REGISTER'/>
+            <CustomButtonPrimary 
+            title='REGISTER' 
+            onPress= {()=> this.buttonOnClickListner('register')}/>
             
             </View>
         );

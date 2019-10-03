@@ -8,6 +8,8 @@ import { createStackNavigator } from 'react-navigation-stack';
 //All routing pages importing
 import SplashScreen from "../screens/SplashScreen/SplashScreen";
 import MainScreen from "../screens/Auth/MainScreen";
+import LoginScreen from "../screens/Auth/LoginScreen";
+import RegisterScreen from "../screens/Auth/RegisterScreen";
 
 //Creating Stack Navigator for All Routes in Application
 const AppNavigator = createStackNavigator({
@@ -20,6 +22,20 @@ const AppNavigator = createStackNavigator({
 //     },
     MainScreen: {
         screen:MainScreen,
+        navigationOptions: { 
+          header: null,  
+          gesturesEnabled: false 
+        },   
+      },
+    LoginScreen: {
+        screen:LoginScreen,
+        navigationOptions: { 
+          header: null,  
+          gesturesEnabled: false 
+        },   
+      },
+    RegisterScreen: {
+        screen:RegisterScreen,
         navigationOptions: { 
           header: null,  
           gesturesEnabled: false 
