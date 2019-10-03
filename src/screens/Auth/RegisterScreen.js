@@ -10,8 +10,10 @@ import {
     StyleSheet,
     ScrollView,
     Image,
-    TextInput
+    TextInput,
+    Alert
 } from 'react-native';
+import DeviceInfo from 'react-native-device-info';
 import RadioForm, {RadioButton, RadioButtonInput, RadioButtonLabel} from 'react-native-simple-radio-button';
 import LinearGradient from 'react-native-linear-gradient';
 import HeaderBackBtn from '../../components/Header/HeaderBackBtn';
@@ -19,6 +21,8 @@ import Metrics from '../../config/Metrics';
 import Assets from '../../config/Assets';
 import AppStyles from '../../config/AppStyles';
 import CustomButtonPrimary from '../../components/CustomButton/CustomButtonPrimary';
+import Spinner from 'react-native-loading-spinner-overlay';
+import API from '../../config/API';
 
 export default class RegisterScreen extends Component {
 
@@ -31,10 +35,19 @@ export default class RegisterScreen extends Component {
             password:'',
             address:'',
             selected_gender:'',
+            uniqueID:'',
+            loading:false,
             gender_data:[  
             {label: 'Male', value: 0 },
             {label: 'Female', value: 1 }]
         }
+    }
+
+    componentWillMount(){
+        //Get Device Unique ID
+        DeviceInfo.getUniqueId().then(uniqueId => {
+            this.setState({uniqueID:uniqueId})
+        });
     }
 
     //On Press event for the back button 
@@ -43,9 +56,93 @@ export default class RegisterScreen extends Component {
         return true;
     }
 
+    //Form Validation
+    regFormValidation = () => {
+        if(this.state.full_name.length<=0 ||
+         this.state.nic_number.length<=0 || 
+         this.state.password.length<=0 ||
+         this.state.selected_gender.length<=0 ||
+         this.state.address.length<=0){
+            Alert.alert(
+                'Fill All Fields',
+                'Please fill all the fields ...',
+                [
+                {text: 'OK',},
+                ],
+                {cancelable: false},
+            );
+         }else{
+             this.API_RegisterUser(); // User Register API Call      
+         }
+    }
+
     //Login button click method
     buttonOnClickListner = () => {
-    
+        this.regFormValidation(); // register form validation 
+    }
+
+    //API Calling function for register user
+    API_RegisterUser = () => {
+        this.setState({loading:true})
+
+        var Full_Name = this.state.full_name;
+        var Email = this.state.email;
+        var NIC_Number = this.state.nic_number;
+        var Password = this.state.password;
+        var gender;
+        if(this.state.selected_gender == 0){
+            gender = 'Male'
+        }else{
+            gender =  'Female'
+        }
+        var Address = this.state.address;
+        var date = new Date().getDate();
+        var month = new Date().getMonth() + 1;
+        var year = new Date().getFullYear();
+        var current_date = date + '-' + month + '-' + year;
+
+        fetch(API.API_REGISTER,{
+            method:'POST',
+            headers:{
+                'Content-Type': 'application/json',
+            },
+            body:JSON.stringify( {
+                "Full_Name":Full_Name,
+                "Email":Email,
+                "NIC_Number":NIC_Number,
+                "Password":Password,
+                "Gender":gender,
+                "Address":Address,
+                "Unique_ID":this.state.uniqueID,
+                "Registration_Date":current_date
+            })
+            })
+            .then((response) => response.json())
+            .then((responseText) => {
+                if(responseText.status_code == '200'){
+                    this.setState({loading:false})
+                    Alert.alert(
+                        'Account Created !',
+                        'You have successfully created new account ...',
+                        [
+                        {text: 'OK',},
+                        ],
+                        {cancelable: false},
+                    );
+                }else if(responseText.status_code == '401'){
+                    this.setState({loading:false})
+                    Alert.alert(
+                        'User Already Exists',
+                        'If you have account please log in ...',
+                        [
+                        {text: 'OK',},
+                        ],
+                        {cancelable: false},
+                    );
+                }
+            })
+            .catch((error) => {
+        });
     }
 
     render() {
@@ -117,7 +214,7 @@ export default class RegisterScreen extends Component {
             <Text style={{fontFamily:AppStyles.primaryFont,fontSize:20,marginBottom:10,marginTop:10}}>Gender</Text>
             <RadioForm
                 radio_props={this.state.gender_data}
-                initial={0}
+                initial={-1}
                 formHorizontal={true}
                 labelHorizontal={false}
                 buttonColor={AppStyles.primaryColor}
@@ -143,6 +240,11 @@ export default class RegisterScreen extends Component {
             <View style={{height:10}}></View>
             </ScrollView>
             
+            <Spinner
+            visible={this.state.loading}
+            cancelable={false}
+            />
+
             </View>
         );
     }

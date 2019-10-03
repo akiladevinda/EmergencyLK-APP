@@ -10,7 +10,8 @@ import {
     StyleSheet,
     ScrollView,
     Image,
-    TextInput
+    TextInput,
+    Alert
 } from 'react-native';
 import LinearGradient from 'react-native-linear-gradient';
 import HeaderBackBtn from '../../components/Header/HeaderBackBtn';
@@ -18,6 +19,8 @@ import Metrics from '../../config/Metrics';
 import Assets from '../../config/Assets';
 import AppStyles from '../../config/AppStyles';
 import CustomButtonPrimary from '../../components/CustomButton/CustomButtonPrimary';
+import Spinner from 'react-native-loading-spinner-overlay';
+import API from '../../config/API';
 
 export default class LoginScreen extends Component {
 
@@ -25,7 +28,8 @@ export default class LoginScreen extends Component {
         super(props);
         this.state = {
             email:'',
-            password:''
+            password:'',
+            loading:false,
         }
     }
 
@@ -35,9 +39,67 @@ export default class LoginScreen extends Component {
         return true;
     }
 
+    //Form Validation
+    loginFormValidation = () => {
+        if(this.state.email.length<=0 || this.state.password.length<=0){
+            Alert.alert(
+                'Fill All Fields',
+                'Please fill all the fields ...',
+                [
+                {text: 'OK',},
+                ],
+                {cancelable: false},
+            );
+        }else{
+            this.API_UserLogin(); // User Login Fetch Function
+        }
+    }
+
     //Login button click method
     buttonOnClickListner = () => {
-    
+        this.loginFormValidation();
+    }
+
+    //API Call method for User Login
+    API_UserLogin = () => {
+
+        this.setState({loading:true})
+        fetch(API.API_LOGIN,{
+            method:'POST',
+            headers:{
+                'Content-Type': 'application/json',
+            },
+            body:JSON.stringify( {
+                "Email":this.state.email,
+                "Password": this.state.password
+            })
+            })
+            .then((response) => response.json())
+            .then((responseText) => {
+                if(responseText.status_code == '200'){
+                    this.setState({loading:false})
+                    Alert.alert(
+                        'Login Success',
+                        'Login Success ...',
+                        [
+                        {text: 'OK',},
+                        ],
+                        {cancelable: false},
+                    );
+                }else if(responseText.status_code == '401'){
+                    this.setState({loading:false})
+                    Alert.alert(
+                        'Login Failure',
+                        'Login Failure ...',
+                        [
+                        {text: 'OK',},
+                        ],
+                        {cancelable: false},
+                    );
+                }
+            })
+            .catch((error) => {
+        });
     }
 
     render() {
@@ -85,6 +147,11 @@ export default class LoginScreen extends Component {
 
             <View style={{height:10}}></View>
             </ScrollView>
+
+            <Spinner
+            visible={this.state.loading}
+            cancelable={false}
+            />
             
             </View>
         );

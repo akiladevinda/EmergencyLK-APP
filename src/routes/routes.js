@@ -11,32 +11,40 @@ import SplashScreen from "../screens/SplashScreen/SplashScreen";
 import MainScreen from "../screens/Auth/MainScreen";
 import LoginScreen from "../screens/Auth/LoginScreen";
 import RegisterScreen from "../screens/Auth/RegisterScreen";
+import HomeScreen from "../screens/HomeScreen/HomeScreen";
 
 //Creating Stack Navigator for All Routes in Application
 const AppNavigator = createStackNavigator({
-//     SplashScreen: {
-//       screen:SplashScreen,
-//       navigationOptions: { 
-//         header: null,  
-//         gesturesEnabled: false 
-//       },   
-//     },
-    // MainScreen: {
-    //     screen:MainScreen,
-    //     navigationOptions: { 
-    //       header: null,  
-    //       gesturesEnabled: false 
-    //     },   
-    //   },
-    // LoginScreen: {
-    //     screen:LoginScreen,
-    //     navigationOptions: { 
-    //       header: null,  
-    //       gesturesEnabled: false 
-    //     },   
-    //   },
+    SplashScreen: {
+      screen:SplashScreen,
+      navigationOptions: { 
+        header: null,  
+        gesturesEnabled: false 
+      },   
+    },
+    MainScreen: {
+        screen:MainScreen,
+        navigationOptions: { 
+          header: null,  
+          gesturesEnabled: false 
+        },   
+      },
+    LoginScreen: {
+        screen:LoginScreen,
+        navigationOptions: { 
+          header: null,  
+          gesturesEnabled: false 
+        },   
+      },
     RegisterScreen: {
         screen:RegisterScreen,
+        navigationOptions: { 
+          header: null,  
+          gesturesEnabled: false 
+        },   
+      },
+    HomeScreen: {
+        screen:HomeScreen,
         navigationOptions: { 
           header: null,  
           gesturesEnabled: false 
