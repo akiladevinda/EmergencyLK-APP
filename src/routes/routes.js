@@ -5,6 +5,7 @@
 
 import { createAppContainer } from "react-navigation";
 import { createStackNavigator } from 'react-navigation-stack';
+import { fromRight } from 'react-navigation-transitions';
 //All routing pages importing
 import SplashScreen from "../screens/SplashScreen/SplashScreen";
 import MainScreen from "../screens/Auth/MainScreen";
@@ -20,20 +21,20 @@ const AppNavigator = createStackNavigator({
 //         gesturesEnabled: false 
 //       },   
 //     },
-    MainScreen: {
-        screen:MainScreen,
-        navigationOptions: { 
-          header: null,  
-          gesturesEnabled: false 
-        },   
-      },
-    LoginScreen: {
-        screen:LoginScreen,
-        navigationOptions: { 
-          header: null,  
-          gesturesEnabled: false 
-        },   
-      },
+    // MainScreen: {
+    //     screen:MainScreen,
+    //     navigationOptions: { 
+    //       header: null,  
+    //       gesturesEnabled: false 
+    //     },   
+    //   },
+    // LoginScreen: {
+    //     screen:LoginScreen,
+    //     navigationOptions: { 
+    //       header: null,  
+    //       gesturesEnabled: false 
+    //     },   
+    //   },
     RegisterScreen: {
         screen:RegisterScreen,
         navigationOptions: { 
@@ -41,10 +42,11 @@ const AppNavigator = createStackNavigator({
           gesturesEnabled: false 
         },   
       },
+
+}, {
+    transitionConfig: () => fromRight(),
+});
     
-  
-  });
-  
   //Make App Navigator to creating app container
   const AppContainer = createAppContainer(AppNavigator);
 

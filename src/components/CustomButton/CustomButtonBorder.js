@@ -46,7 +46,7 @@ const styles = StyleSheet.create({
     },
     buttonText:{
         textAlign:'center',
-        fontSize:22,
+        fontSize:18,
         fontFamily:AppStyles.primaryFont,
         marginTop:-10,
         color:AppStyles.primaryColor
