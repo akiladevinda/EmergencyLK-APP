@@ -26,6 +26,7 @@ import TsunamiAlerts from '../AlertScreens/TsunamiAlerts';
 import EarthquakeAlerts from '../AlertScreens/EarthquakeAlerts';
 import FloodAlerts from '../AlertScreens/FloodAlerts';
 import MyProfile from '../MyProfile/MyProfile';
+import MissingPersonsNewsFeed from '../MissingPerson/MissingPersonsNewsFeed';
 
 export default class HomeScreen extends Component {
 
@@ -74,6 +75,11 @@ export default class HomeScreen extends Component {
         this.props.navigation.navigate("MyProfile",{screen:MyProfile})
     }
 
+    //View missing persons news feed
+    viewMissingPersonsNewsFeed = () => {
+        this.props.navigation.navigate("MissingPersonsNewsFeed",{screen:MissingPersonsNewsFeed})
+    }
+
     //Get call to emergency number
     callEmergencyNumber = () => {
         Linking.openURL(`tel:${119}`)
@@ -96,7 +102,7 @@ export default class HomeScreen extends Component {
             <View style={styles.missingPersons}>
             <Text style={styles.misssingPersonsText}>{this.state.missing_persons_count} Missing Persons</Text>
             <View style={styles.missingPersongBtnContainer}>
-            <TouchableOpacity style={styles.missingPersonButton}>
+            <TouchableOpacity style={styles.missingPersonButton} onPress={ ()=> this.viewMissingPersonsNewsFeed()}>
             <Text style={styles.missingPersonBtnText}>VIEW ALL</Text>
             </TouchableOpacity>
             </View>
