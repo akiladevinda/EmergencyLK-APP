@@ -13,6 +13,7 @@ import {
     TextInput,
     Alert
 } from 'react-native';
+import AsyncStorage from '@react-native-community/async-storage';
 import LinearGradient from 'react-native-linear-gradient';
 import HeaderBackBtn from '../../components/Header/HeaderBackBtn';
 import Metrics from '../../config/Metrics';
@@ -76,7 +77,7 @@ export default class LoginScreen extends Component {
             })
             .then((response) => response.json())
             .then((responseText) => {
-                if(responseText.status_code == '200'){
+                if(responseText.status_code == '200'){ //Login Sucessfull 
                     this.setState({loading:false})
                     Alert.alert(
                         'Login Success',
@@ -86,11 +87,19 @@ export default class LoginScreen extends Component {
                         ],
                         {cancelable: false},
                     );
-                }else if(responseText.status_code == '401'){
+                    //Save User Name and Email - AsyncStorage
+                    try {
+                        AsyncStorage.setItem('Logged_User_Email', JSON.stringify(this.state.email));
+                    }
+                    catch (e) {
+                    console.log('caught error', e);
+                    }
+
+                }else if(responseText.status_code == '401'){  // Invalid login credentials
                     this.setState({loading:false})
                     Alert.alert(
-                        'Login Failure',
-                        'Login Failure ...',
+                        'Invalid Credentials',
+                        'Check your email and password...',
                         [
                         {text: 'OK',},
                         ],
@@ -99,6 +108,15 @@ export default class LoginScreen extends Component {
                 }
             })
             .catch((error) => {
+                this.setState({loading:false})
+                Alert.alert(
+                    'Error Occured !',
+                    'Please try again later...',
+                    [
+                    {text: 'OK',},
+                    ],
+                    {cancelable: false},
+                );
         });
     }
 

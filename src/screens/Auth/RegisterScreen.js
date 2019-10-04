@@ -119,7 +119,7 @@ export default class RegisterScreen extends Component {
             })
             .then((response) => response.json())
             .then((responseText) => {
-                if(responseText.status_code == '200'){
+                if(responseText.status_code == '200'){ //Registration auccessfull
                     this.setState({loading:false})
                     Alert.alert(
                         'Account Created !',
@@ -129,7 +129,7 @@ export default class RegisterScreen extends Component {
                         ],
                         {cancelable: false},
                     );
-                }else if(responseText.status_code == '401'){
+                }else if(responseText.status_code == '401'){  // NIC or email already exsists
                     this.setState({loading:false})
                     Alert.alert(
                         'User Already Exists',
@@ -142,6 +142,15 @@ export default class RegisterScreen extends Component {
                 }
             })
             .catch((error) => {
+                this.setState({loading:false})
+                Alert.alert(
+                    'Error Occured !',
+                    'Please try again later...',
+                    [
+                    {text: 'OK',},
+                    ],
+                    {cancelable: false},
+                );
         });
     }
 
@@ -221,7 +230,7 @@ export default class RegisterScreen extends Component {
                 selectedButtonColor={AppStyles.primaryColor}
                 buttonSize={30}
                 buttonOuterSize={40}
-                animation={true}
+                animation={false}
                 labelStyle={{fontFamily:AppStyles.primaryFontLight,fontSize:18}}
                 buttonWrapStyle={{marginLeft: 20}}
                 onPress={(value) => {this.setState({selected_gender:value})}}

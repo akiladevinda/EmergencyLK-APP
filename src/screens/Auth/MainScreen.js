@@ -8,7 +8,8 @@ import {
     View,
     Text,
     StyleSheet,
-    Image
+    Image,
+    BackHandler
 } from 'react-native';
 import LinearGradient from 'react-native-linear-gradient';
 import Metrics from '../../config/Metrics';
@@ -26,7 +27,21 @@ export default class MainScreen extends Component {
         super(props);
         this.state = {
         }
+        this.handleBackButtonClick = this.handleBackButtonClick.bind(this); 
     }
+
+    componentDidMount(){
+        BackHandler.addEventListener('hardwareBackPress', this.handleBackButtonClick);
+    }
+    
+    componentWillUnmount() {
+        BackHandler.removeEventListener('hardwareBackPress', this.handleBackButtonClick);
+    }
+    //Back button handle event - Android Only
+    handleBackButtonClick() {
+        BackHandler.exitApp();
+        return true;
+    }    
 
     //Button Click Listner Function
     buttonOnClickListner = (value) => {
