@@ -22,6 +22,7 @@ import AppStyles from '../../config/AppStyles';
 import CustomButtonPrimary from '../../components/CustomButton/CustomButtonPrimary';
 import Spinner from 'react-native-loading-spinner-overlay';
 import API from '../../config/API';
+import HomeScreen from '../HomeScreen/HomeScreen';
 
 export default class LoginScreen extends Component {
 
@@ -79,14 +80,6 @@ export default class LoginScreen extends Component {
             .then((responseText) => {
                 if(responseText.status_code == '200'){ //Login Sucessfull 
                     this.setState({loading:false})
-                    Alert.alert(
-                        'Login Success',
-                        'Login Success ...',
-                        [
-                        {text: 'OK',},
-                        ],
-                        {cancelable: false},
-                    );
                     //Save User Name and Email - AsyncStorage
                     try {
                         AsyncStorage.setItem('Logged_User_Email', JSON.stringify(this.state.email));
@@ -94,6 +87,8 @@ export default class LoginScreen extends Component {
                     catch (e) {
                     console.log('caught error', e);
                     }
+
+                    this.props.navigation.navigate("HomeScreen",{screen:HomeScreen}) //Navigate to home screen
 
                 }else if(responseText.status_code == '401'){  // Invalid login credentials
                     this.setState({loading:false})

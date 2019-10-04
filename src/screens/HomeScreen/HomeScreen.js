@@ -13,8 +13,10 @@ import {
     Image,
     FlatList,
     Alert,
-    Linking
+    Linking,
+    BackHandler
 } from 'react-native';
+import AsyncStorage from '@react-native-community/async-storage';
 import LinearGradient from 'react-native-linear-gradient';
 import Metrics from '../../config/Metrics';
 import Assets from '../../config/Assets';
@@ -46,11 +48,21 @@ export default class HomeScreen extends Component {
     }
 
     componentWillMount(){
-
+        //Write Local Storage when the application launched after login
+        AsyncStorage.setItem('alreadyLaunched', JSON.stringify(true));
     }
 
     componentDidMount(){
+        BackHandler.addEventListener('hardwareBackPress', this.handleBackButton);
+    }
+      
+    componentWillUnmount() {
+        BackHandler.removeEventListener('hardwareBackPress', this.handleBackButton);
+    }
 
+    handleBackButton(){
+        BackHandler.exitApp();
+        return true;
     }
 
     clickEventListener(item) {

@@ -13,6 +13,7 @@ import {
     TextInput,
     Alert
 } from 'react-native';
+import AsyncStorage from '@react-native-community/async-storage';
 import DeviceInfo from 'react-native-device-info';
 import RadioForm, {RadioButton, RadioButtonInput, RadioButtonLabel} from 'react-native-simple-radio-button';
 import LinearGradient from 'react-native-linear-gradient';
@@ -23,6 +24,7 @@ import AppStyles from '../../config/AppStyles';
 import CustomButtonPrimary from '../../components/CustomButton/CustomButtonPrimary';
 import Spinner from 'react-native-loading-spinner-overlay';
 import API from '../../config/API';
+import HomeScreen from '../HomeScreen/HomeScreen';
 
 export default class RegisterScreen extends Component {
 
@@ -81,6 +83,20 @@ export default class RegisterScreen extends Component {
         this.regFormValidation(); // register form validation 
     }
 
+    //Save user details and navigate to home screen
+    navigateToHome = () => {
+        //Save User Name and Email - AsyncStorage
+        try {
+            AsyncStorage.setItem('Logged_User_Email', JSON.stringify(this.state.email));
+        }
+        catch (e) {
+        console.log('caught error', e);
+        }
+
+        this.props.navigation.navigate("HomeScreen",{screen:HomeScreen})
+
+    }
+
     //API Calling function for register user
     API_RegisterUser = () => {
         this.setState({loading:true})
@@ -125,7 +141,7 @@ export default class RegisterScreen extends Component {
                         'Account Created !',
                         'You have successfully created new account ...',
                         [
-                        {text: 'OK',},
+                        {text: 'OK',onPress: () => this.navigateToHome()},
                         ],
                         {cancelable: false},
                     );
