@@ -10,6 +10,7 @@ const HOST = '10.0.2.2';
 const API_REGISTER = PROTOCOL+HOST+'/emeergency-lk/api/user-register.php'
 const API_LOGIN = PROTOCOL+HOST+'/emeergency-lk/api/user-login.php'
 const API_USER_DETAILS = PROTOCOL+HOST+'/emeergency-lk/api/get-user-details.php'
+const API_REPORT_CRIME = PROTOCOL+HOST+'/emeergency-lk/api/report-crime.php'
 
 //Exporting All API Links to Use
 export default
@@ -17,6 +18,7 @@ export default
     API_REGISTER:API_REGISTER,
     API_LOGIN:API_LOGIN,
     API_USER_DETAILS:API_USER_DETAILS,
+    API_REPORT_CRIME:API_REPORT_CRIME,
 }
     
  

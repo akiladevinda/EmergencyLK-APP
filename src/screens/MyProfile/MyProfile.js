@@ -1,6 +1,6 @@
 /**
  * EmergencyLK 
- * Report Crime Screen
+ * User Profile Screen
  */
 
 import React, { Component } from 'react';
@@ -34,7 +34,7 @@ export default class MyProfile extends Component {
         //Get user email from async storage and call the user information API
         this.getUserLoggedEmail().then((Logged_User_Email) => {
            this.API_GetUserDetails(JSON.parse(Logged_User_Email)); // Getting user details from API
-          })
+        })
     }
 
     //Get user email address from local storage
@@ -53,7 +53,7 @@ export default class MyProfile extends Component {
     onLogoutConfirmation = () => {
         Alert.alert(
             'Confirm !',
-            'Are you sure to log out ?',
+            'Are you sure want to log out ?',
             [
             {text: 'YES',onPress: () => this.onLogoutClickLitsner(),},
             {text: 'NO',style: 'cancel',},
