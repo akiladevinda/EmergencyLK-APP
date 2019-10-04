@@ -1,6 +1,6 @@
 /**
  * EmergencyLK 
- * Report Crime Screen
+ * Missing Persons News Feed
  */
 
 import React, { Component } from 'react';

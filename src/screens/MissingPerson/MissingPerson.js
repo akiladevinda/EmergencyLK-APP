@@ -1,6 +1,6 @@
 /**
  * EmergencyLK 
- * Report Crime Screen
+ * Report Missing Person Screen
  */
 
 import React, { Component } from 'react';

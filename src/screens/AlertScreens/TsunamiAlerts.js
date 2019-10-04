@@ -1,6 +1,6 @@
 /**
  * EmergencyLK 
- * Report Crime Screen
+ * Tsunami Alerts Screen
  */
 
 import React, { Component } from 'react';

@@ -1,6 +1,6 @@
 /**
  * EmergencyLK 
- * Report Crime Screen
+ * Add Medical Help Screen
  */
 
 import React, { Component } from 'react';
