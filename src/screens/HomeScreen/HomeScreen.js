@@ -10,7 +10,10 @@ import {
     StyleSheet,
     ScrollView,
     TouchableOpacity,
-    Image
+    Image,
+    FlatList,
+    Alert,
+    Linking
 } from 'react-native';
 import LinearGradient from 'react-native-linear-gradient';
 import Metrics from '../../config/Metrics';
@@ -22,7 +25,33 @@ export default class HomeScreen extends Component {
     constructor(props) {
         super(props);
         this.state = {
+            missing_persons_count :'100',
+            menu_items: [
+                {id:1, title: "Report Crime", image:Assets.HOME_CRIME_REPORT},
+                {id:2, title: "Report Missing Person", image:Assets.HOME_MISSING_PERSONS},
+                {id:3, title: "Medical Help", image:Assets.HOME_MEDICAL_HELP},
+                {id:4, title: "Tsunami Alerts", image:Assets.HOME_TSUNAMI_ALERTS},
+                {id:5, title: "Earthquake Alerts", image:Assets.HOME_EARTHQUAKE},
+                {id:6, title: "Flood Alerts", image:Assets.HOME_FLOOD},
+              ]
         }
+    }
+
+    componentWillMount(){
+
+    }
+
+    componentDidMount(){
+
+    }
+
+    clickEventListener(item) {
+        alert(item.title)
+    }
+
+    //Get call to emergency number
+    callEmergencyNumber = () => {
+        Linking.openURL(`tel:${119}`)
     }
 
     render() {
@@ -40,7 +69,7 @@ export default class HomeScreen extends Component {
             </View>
 
             <View style={styles.missingPersons}>
-            <Text style={styles.misssingPersonsText}>100 Missing Persons</Text>
+            <Text style={styles.misssingPersonsText}>{this.state.missing_persons_count} Missing Persons</Text>
             <View style={styles.missingPersongBtnContainer}>
             <TouchableOpacity style={styles.missingPersonButton}>
             <Text style={styles.missingPersonBtnText}>VIEW ALL</Text>
@@ -48,6 +77,42 @@ export default class HomeScreen extends Component {
             </View>
             </View>
 
+            <View style={styles.emergencyCallContainer}>
+            <TouchableOpacity style={styles.emergencyCallButton} onPress={ ()=> this.callEmergencyNumber()}>
+            <Text style={styles.emeergenctBtnText}>CALL EMERGENCY NUMBER</Text>
+            </TouchableOpacity>
+            </View>
+
+            <View style={styles.borderSeparate}></View>
+
+            <FlatList style={styles.list}
+            contentContainerStyle={styles.listContainer}
+            data={this.state.menu_items}
+            horizontal={false}
+            numColumns={2}
+            keyExtractor= {(item) => {
+                return item.id;
+            }}
+            renderItem={({item}) => {
+                return (
+                <TouchableOpacity style={styles.card} onPress={() => {this.clickEventListener(item)}}>
+                    <View style={styles.cardFooter}></View>
+                    <Image style={styles.cardImage} source={item.image}/>
+                    <View style={styles.cardHeader}>
+                    <View style={{alignItems:"center", justifyContent:"center"}}>
+                        <Text style={styles.title}>{item.title}</Text>
+                    </View>
+                    </View>
+                </TouchableOpacity>
+                )
+            }}/>
+
+            <View style={styles.logOutContainer}>
+            <TouchableOpacity style={styles.logOutButton}>
+            <Text style={styles.logutButtonText}>VIEW MY PROFILE</Text>
+            </TouchableOpacity>
+            </View>
+            <View style={{height:10}}></View>
             </LinearGradient>
             </ScrollView>
             </View>
@@ -61,7 +126,7 @@ const styles = StyleSheet.create({
     },
     homeBgView:{
         width:Metrics.DEVICE_WIDTH,
-        height:Metrics.DEVICE_HEIGHT
+        // height:Metrics.DEVICE_HEIGHT
     },
     headerView:{
         flexDirection:'row',
@@ -102,10 +167,10 @@ const styles = StyleSheet.create({
     missingPersongBtnContainer:{
         flexDirection: 'row',
         justifyContent:'center',
-        width:Metrics.DEVICE_WIDTH/3,
-        height:Metrics.DEVICE_HEIGHT/13,
+        width:Metrics.DEVICE_WIDTH/2.7,
+        height:Metrics.DEVICE_HEIGHT/15,
         borderRadius:30,
-        marginLeft:Metrics.DEVICE_WIDTH/4,
+        marginLeft:Metrics.DEVICE_WIDTH/5,
         backgroundColor:AppStyles.colorWhite,
         marginTop:Metrics.DEVICE_HEIGHT/25
     },
@@ -117,6 +182,110 @@ const styles = StyleSheet.create({
         backgroundColor:'transparent'
     },
     missingPersonBtnText:{
+        textAlign:'center',
+        fontSize:18,
+        fontFamily:AppStyles.primaryFontBold,
+        marginTop:-10,
+        color:AppStyles.primaryColor
+    },
+    emergencyCallContainer:{
+        flexDirection: 'row',
+        justifyContent:'center',
+        width:Metrics.DEVICE_WIDTH/1.2,
+        height:Metrics.DEVICE_HEIGHT/15,
+        borderRadius:15,
+        marginLeft:Metrics.DEVICE_WIDTH/12,
+        backgroundColor:AppStyles.colorWhite,
+        marginTop:Metrics.DEVICE_HEIGHT/25
+    },
+    emergencyCallButton:{
+        height:50,
+        width:Metrics.DEVICE_WIDTH/1.2,
+        padding:20,
+        marginTop:5,
+        backgroundColor:'transparent'
+    },
+    emeergenctBtnText:{
+        textAlign:'center',
+        fontSize:18,
+        fontFamily:AppStyles.primaryFontBold,
+        marginTop:-10,
+        color:AppStyles.primaryColor
+    },
+    borderSeparate:{
+        width:Metrics.DEVICE_WIDTH/1.2,
+        height:2,
+        backgroundColor:'white',
+        marginTop:Metrics.DEVICE_HEIGHT/15,
+        marginLeft:Metrics.DEVICE_WIDTH/12
+    },
+    list: {
+        paddingHorizontal: 5,
+        marginTop:10,
+    },
+    listContainer:{
+        alignItems:'center'
+    },
+    card:{
+        marginVertical: 10,
+        backgroundColor:'rgba(0,0,0,0.2)',
+        flexBasis: '40%',
+        marginHorizontal: 10,
+        borderRadius:30,
+    },
+    cardHeader: {
+        paddingVertical: 17,
+        paddingHorizontal: 16,
+        borderTopLeftRadius: 1,
+        borderTopRightRadius: 1,
+        flexDirection: 'row',
+        alignItems:"center", 
+        justifyContent:"center"
+    },
+    cardContent: {
+        paddingVertical: 12.5,
+        paddingHorizontal: 16,
+    },
+    cardFooter:{
+        flexDirection: 'row',
+        justifyContent: 'space-between',
+        paddingTop: 12.5,
+        paddingBottom: 25,
+        paddingHorizontal: 16,
+        borderBottomLeftRadius: 1,
+        borderBottomRightRadius: 1,
+    },
+    cardImage:{
+        height: 70,
+        width: 70,
+        alignSelf:'center'
+    },
+    title:{
+        fontSize:15,
+        flex:1,
+        alignSelf:'center',
+        textAlign:'center',
+        color:AppStyles.colorWhite,
+        fontFamily:AppStyles.primaryFontBold
+    },
+    logOutContainer:{
+        flexDirection: 'row',
+        justifyContent:'center',
+        width:Metrics.DEVICE_WIDTH/1.2,
+        height:Metrics.DEVICE_HEIGHT/12,
+        borderRadius:15,
+        marginLeft:Metrics.DEVICE_WIDTH/12,
+        backgroundColor:AppStyles.colorWhite,
+        marginTop:Metrics.DEVICE_HEIGHT/25
+    },
+    logOutButton:{
+        height:50,
+        width:Metrics.DEVICE_WIDTH/1.2,
+        padding:20,
+        marginTop:5,
+        backgroundColor:'transparent'
+    },
+    logutButtonText:{
         textAlign:'center',
         fontSize:18,
         fontFamily:AppStyles.primaryFontBold,

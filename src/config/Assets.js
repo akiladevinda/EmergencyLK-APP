@@ -15,6 +15,12 @@ const Assets = {
     IC_PASSWORD : require('../assets/auth/password.png'),
     IC_ADDRESS : require('../assets/auth/address.png'),
     IC_NOTIFICATION : require('../assets/header/notifications.png'),
+    HOME_MISSING_PERSONS : require('../assets/home/missing-persons.png'),
+    HOME_CRIME_REPORT : require('../assets/home/crime.png'),
+    HOME_MEDICAL_HELP : require('../assets/home/medical-help.png'),
+    HOME_TSUNAMI_ALERTS : require('../assets/home/tsunami.png'),
+    HOME_EARTHQUAKE: require('../assets/home/earthquake.png'),
+    HOME_FLOOD : require('../assets/home/flood.png'),
 };
 
 
