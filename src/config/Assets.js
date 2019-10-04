@@ -21,6 +21,11 @@ const Assets = {
     HOME_TSUNAMI_ALERTS : require('../assets/home/tsunami.png'),
     HOME_EARTHQUAKE: require('../assets/home/earthquake.png'),
     HOME_FLOOD : require('../assets/home/flood.png'),
+    CRIME_REPORTER_NAME : require('../assets/crime/reporter-name.png'),
+    CRIME_REPORTER_MOBILE : require('../assets/crime/reporter-mobile.png'),
+    CRIME_LOCATION : require('../assets/crime/location.png'),
+    CRIME_DATE : require('../assets/crime/date.png'),
+    CRIME_TIME : require('../assets/crime/time.png'),
 };
 
 
