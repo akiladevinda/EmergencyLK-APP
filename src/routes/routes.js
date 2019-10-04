@@ -12,6 +12,13 @@ import MainScreen from "../screens/Auth/MainScreen";
 import LoginScreen from "../screens/Auth/LoginScreen";
 import RegisterScreen from "../screens/Auth/RegisterScreen";
 import HomeScreen from "../screens/HomeScreen/HomeScreen";
+import ReportCrime from "../screens/ReportCrime/ReportCrime";
+import EarthquakeAlerts from "../screens/AlertScreens/EarthquakeAlerts";
+import FloodAlerts from "../screens/AlertScreens/FloodAlerts";
+import TsunamiAlerts from "../screens/AlertScreens/TsunamiAlerts";
+import MedicalHelp from "../screens/MedicalHelp/MedicalHelp";
+import MissingPerson from "../screens/MissingPerson/MissingPerson";
+import MyProfile from "../screens/MyProfile/MyProfile";
 
 //Creating Stack Navigator for All Routes in Application
 const AppNavigator = createStackNavigator({
@@ -50,7 +57,55 @@ const AppNavigator = createStackNavigator({
           gesturesEnabled: false 
         },   
       },
-
+    ReportCrime: {
+          screen:ReportCrime,
+          navigationOptions: { 
+            header: null,  
+            gesturesEnabled: false 
+          },   
+      },
+    EarthquakeAlerts: {
+          screen:EarthquakeAlerts,
+          navigationOptions: { 
+            header: null,  
+            gesturesEnabled: false 
+          },   
+      },
+    FloodAlerts: {
+          screen:FloodAlerts,
+          navigationOptions: { 
+            header: null,  
+            gesturesEnabled: false 
+          },   
+    },
+    TsunamiAlerts: {
+          screen:TsunamiAlerts,
+          navigationOptions: { 
+            header: null,  
+            gesturesEnabled: false 
+          },   
+      },
+    MedicalHelp: {
+          screen:MedicalHelp,
+          navigationOptions: { 
+            header: null,  
+            gesturesEnabled: false 
+          },   
+      },
+    MissingPerson: {
+          screen:MissingPerson,
+          navigationOptions: { 
+            header: null,  
+            gesturesEnabled: false 
+          },   
+    },
+    MyProfile: {
+          screen:MyProfile,
+          navigationOptions: { 
+            header: null,  
+            gesturesEnabled: false 
+          },   
+      },
 }, {
     transitionConfig: () => fromRight(),
 });

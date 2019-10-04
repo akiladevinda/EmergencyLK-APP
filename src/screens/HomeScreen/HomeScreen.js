@@ -19,6 +19,13 @@ import LinearGradient from 'react-native-linear-gradient';
 import Metrics from '../../config/Metrics';
 import Assets from '../../config/Assets';
 import AppStyles from '../../config/AppStyles';
+import ReportCrime from '../ReportCrime/ReportCrime';
+import MissingPerson from '../MissingPerson/MissingPerson';
+import MedicalHelp from '../MedicalHelp/MedicalHelp';
+import TsunamiAlerts from '../AlertScreens/TsunamiAlerts';
+import EarthquakeAlerts from '../AlertScreens/EarthquakeAlerts';
+import FloodAlerts from '../AlertScreens/FloodAlerts';
+import MyProfile from '../MyProfile/MyProfile';
 
 export default class HomeScreen extends Component {
 
@@ -46,7 +53,25 @@ export default class HomeScreen extends Component {
     }
 
     clickEventListener(item) {
-        alert(item.title)
+        // alert(item.title)
+        if(item.id == 1){ 
+            this.props.navigation.navigate("ReportCrime",{screen:ReportCrime})
+        }else if(item.id == 2){
+            this.props.navigation.navigate("MissingPerson",{screen:MissingPerson})
+        }else if(item.id == 3){
+            this.props.navigation.navigate("MedicalHelp",{screen:MedicalHelp})
+        }else if(item.id == 4){
+            this.props.navigation.navigate("TsunamiAlerts",{screen:TsunamiAlerts})
+        }else if(item.id == 5){
+            this.props.navigation.navigate("EarthquakeAlerts",{screen:EarthquakeAlerts})
+        }else if(item.id == 6){
+            this.props.navigation.navigate("FloodAlerts",{screen:FloodAlerts})
+        }
+    }
+
+    //View USer Profile
+    viewUserProfile = () => {
+        this.props.navigation.navigate("MyProfile",{screen:MyProfile})
     }
 
     //Get call to emergency number
@@ -108,7 +133,7 @@ export default class HomeScreen extends Component {
             }}/>
 
             <View style={styles.logOutContainer}>
-            <TouchableOpacity style={styles.logOutButton}>
+            <TouchableOpacity style={styles.logOutButton} onPress={ () => this.viewUserProfile()}>
             <Text style={styles.logutButtonText}>VIEW MY PROFILE</Text>
             </TouchableOpacity>
             </View>
