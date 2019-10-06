@@ -26,6 +26,9 @@ const Assets = {
     CRIME_LOCATION : require('../assets/crime/location.png'),
     CRIME_DATE : require('../assets/crime/date.png'),
     CRIME_TIME : require('../assets/crime/time.png'),
+    PERSON_AGE:require('../assets/crime/age.png'),
+    PERSON_HEIGHT:require('../assets/crime/height.png'),
+    
 };
 
 
