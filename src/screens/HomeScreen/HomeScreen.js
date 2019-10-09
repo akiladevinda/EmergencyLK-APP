@@ -29,13 +29,14 @@ import EarthquakeAlerts from '../AlertScreens/EarthquakeAlerts';
 import FloodAlerts from '../AlertScreens/FloodAlerts';
 import MyProfile from '../MyProfile/MyProfile';
 import MissingPersonsNewsFeed from '../MissingPerson/MissingPersonsNewsFeed';
+import API from '../../config/API';
 
 export default class HomeScreen extends Component {
 
     constructor(props) {
         super(props);
         this.state = {
-            missing_persons_count :'100',
+            missing_persons_count :'',
             menu_items: [
                 {id:1, title: "Report Crime", image:Assets.HOME_CRIME_REPORT},
                 {id:2, title: "Report Missing Person", image:Assets.HOME_MISSING_PERSONS},
@@ -50,6 +51,7 @@ export default class HomeScreen extends Component {
     componentWillMount(){
         //Write Local Storage when the application launched after login
         AsyncStorage.setItem('alreadyLaunched', JSON.stringify(true));
+        this.API_GetMissingPersons_Count();
     }
 
     componentDidMount(){
@@ -58,6 +60,11 @@ export default class HomeScreen extends Component {
       
     componentWillUnmount() {
         BackHandler.removeEventListener('hardwareBackPress', this.handleBackButton);
+    }
+
+    //Fetch Missing Person count on back screen
+    missingPersonCountRefresh = () => {
+        this.API_GetMissingPersons_Count();
     }
 
     handleBackButton(){
@@ -70,7 +77,7 @@ export default class HomeScreen extends Component {
         if(item.id == 1){ 
             this.props.navigation.navigate("ReportCrime",{screen:ReportCrime})
         }else if(item.id == 2){
-            this.props.navigation.navigate("MissingPerson",{screen:MissingPerson})
+            this.props.navigation.navigate("MissingPerson",{screen:MissingPerson,onGoBack: () => this.missingPersonCountRefresh(),})
         }else if(item.id == 3){
             this.props.navigation.navigate("MedicalHelp",{screen:MedicalHelp})
         }else if(item.id == 4){
@@ -95,6 +102,26 @@ export default class HomeScreen extends Component {
     //Get call to emergency number
     callEmergencyNumber = () => {
         Linking.openURL(`tel:${119}`)
+    }
+
+    //Get missing persons count API call 
+    API_GetMissingPersons_Count = () => {
+        fetch(API.API_MISSINGP_COUNT,{
+            method:'GET',
+            headers:{
+                'Content-Type': 'application/json',
+            },
+            })
+            .then((response) => response.json())
+            .then((responseText) => {
+                if(responseText.data[0].status_code == '200'){
+                    this.setState({missing_persons_count:responseText.data[0].Count})
+                }else {
+                    this.setState({missing_persons_count:'0'})
+                }
+            })
+            .catch((error) => {
+        });
     }
 
     render() {

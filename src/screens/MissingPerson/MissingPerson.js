@@ -63,13 +63,16 @@ export default class MissingPerson extends Component {
 
     //Back Button Press Event
     backButtonOnPress = () => {
-        this.props.navigation.goBack();
+        this.props.navigation.state.params.onGoBack();
+        this.props.navigation.goBack(null);
         return true;
     }
 
     //Home navigation method
     navigateToHome = () => {
-        this.props.navigation.navigate("HomeScreen",{screen:HomeScreen})
+        this.props.navigation.state.params.onGoBack();
+        this.props.navigation.goBack(null);
+        return true;
     }
 
     //Form Validation
