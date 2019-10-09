@@ -12,6 +12,7 @@ const API_LOGIN = PROTOCOL+HOST+'/emeergency-lk/api/user-login.php'
 const API_USER_DETAILS = PROTOCOL+HOST+'/emeergency-lk/api/get-user-details.php'
 const API_REPORT_CRIME = PROTOCOL+HOST+'/emeergency-lk/api/report-crime.php'
 const API_REPORT_MISSING_PERSON= PROTOCOL+HOST+'/emeergency-lk/api/report-miss-persons.php'
+const API_MDEICAL_HELP = PROTOCOL+HOST+'/emeergency-lk/api/report-medical-help.php'
 
 //Exporting All API Links to Use
 export default
@@ -21,6 +22,7 @@ export default
     API_USER_DETAILS:API_USER_DETAILS,
     API_REPORT_CRIME:API_REPORT_CRIME,
     API_REPORT_MISSING_PERSON:API_REPORT_MISSING_PERSON,
+    API_MDEICAL_HELP:API_MDEICAL_HELP,
 }
     
  

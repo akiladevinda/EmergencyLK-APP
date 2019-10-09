@@ -11,7 +11,6 @@ import {
     Image,
     ScrollView,
     TextInput,
-    TouchableOpacity,
     Alert
 } from 'react-native';
 import HeaderPrimary from '../../components/Header/HeaderPrimary';
