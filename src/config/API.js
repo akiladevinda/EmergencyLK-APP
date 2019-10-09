@@ -14,6 +14,7 @@ const API_REPORT_CRIME = PROTOCOL+HOST+'/emeergency-lk/api/report-crime.php'
 const API_REPORT_MISSING_PERSON= PROTOCOL+HOST+'/emeergency-lk/api/report-miss-persons.php'
 const API_MDEICAL_HELP = PROTOCOL+HOST+'/emeergency-lk/api/report-medical-help.php'
 const API_MISSINGP_COUNT = PROTOCOL+HOST+'/emeergency-lk/api/missingp-count.php'
+const API_GET_MISSING_PERSONS = PROTOCOL+HOST+'/emeergency-lk/api/get-missing-persons.php'
 
 //Exporting All API Links to Use
 export default
@@ -25,6 +26,7 @@ export default
     API_REPORT_MISSING_PERSON:API_REPORT_MISSING_PERSON,
     API_MDEICAL_HELP:API_MDEICAL_HELP,
     API_MISSINGP_COUNT:API_MISSINGP_COUNT,
+    API_GET_MISSING_PERSONS:API_GET_MISSING_PERSONS,
 }
     
  
