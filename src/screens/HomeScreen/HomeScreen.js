@@ -30,6 +30,7 @@ import FloodAlerts from '../AlertScreens/FloodAlerts';
 import MyProfile from '../MyProfile/MyProfile';
 import MissingPersonsNewsFeed from '../MissingPerson/MissingPersonsNewsFeed';
 import API from '../../config/API';
+import MedicalHelpNewsFeed from '../MedicalHelp/MedicalHelpNewsFeed';
 
 export default class HomeScreen extends Component {
 
@@ -37,6 +38,7 @@ export default class HomeScreen extends Component {
         super(props);
         this.state = {
             missing_persons_count :'',
+            medical_help_count:'',
             menu_items: [
                 {id:1, title: "Report Crime", image:Assets.HOME_CRIME_REPORT},
                 {id:2, title: "Report Missing Person", image:Assets.HOME_MISSING_PERSONS},
@@ -52,6 +54,7 @@ export default class HomeScreen extends Component {
         //Write Local Storage when the application launched after login
         AsyncStorage.setItem('alreadyLaunched', JSON.stringify(true));
         this.API_GetMissingPersons_Count();
+        this.API_GetMedicalHelp_Count();
     }
 
     componentDidMount(){
@@ -99,6 +102,11 @@ export default class HomeScreen extends Component {
         this.props.navigation.navigate("MissingPersonsNewsFeed",{screen:MissingPersonsNewsFeed})
     }
 
+    //view medical help news feed
+    viewMedicalHelpNewsFeed = () => {
+        this.props.navigation.navigate("MedicalHelpNewsFeed",{screen:MedicalHelpNewsFeed})
+    }
+
     //Get call to emergency number
     callEmergencyNumber = () => {
         Linking.openURL(`tel:${119}`)
@@ -124,6 +132,26 @@ export default class HomeScreen extends Component {
         });
     }
 
+    //Get Medical Help Count API call
+    API_GetMedicalHelp_Count = () => {
+        fetch(API.API_GET_MEDHELP_COUNT,{
+            method:'GET',
+            headers:{
+                'Content-Type': 'application/json',
+            },
+            })
+            .then((response) => response.json())
+            .then((responseText) => {
+                if(responseText.data[0].status_code == '200'){
+                    this.setState({medical_help_count:responseText.data[0].Count})
+                }else {
+                    this.setState({medical_help_count:'0'})
+                }
+            })
+            .catch((error) => {
+        });
+    }
+
     render() {
         return (
             <View style={styles.container}>
@@ -142,6 +170,15 @@ export default class HomeScreen extends Component {
             <Text style={styles.misssingPersonsText}>{this.state.missing_persons_count} Missing Persons</Text>
             <View style={styles.missingPersongBtnContainer}>
             <TouchableOpacity style={styles.missingPersonButton} onPress={ ()=> this.viewMissingPersonsNewsFeed()}>
+            <Text style={styles.missingPersonBtnText}>VIEW ALL</Text>
+            </TouchableOpacity>
+            </View>
+            </View>
+
+            <View style={styles.missingPersons}>
+            <Text style={styles.misssingPersonsText}>{this.state.medical_help_count} Need Medical Help</Text>
+            <View style={styles.missingPersongBtnContainer}>
+            <TouchableOpacity style={styles.missingPersonButton} onPress={ ()=> this.viewMedicalHelpNewsFeed()}>
             <Text style={styles.missingPersonBtnText}>VIEW ALL</Text>
             </TouchableOpacity>
             </View>

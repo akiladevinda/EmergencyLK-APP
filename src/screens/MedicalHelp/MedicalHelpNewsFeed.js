@@ -1,6 +1,6 @@
 /**
  * EmergencyLK 
- * Missing Persons News Feed
+ * Medical Help News Feed
  */
 
 import React, { Component } from 'react';
@@ -23,13 +23,13 @@ import CustomButtonBorder from '../../components/CustomButton/CustomButtonBorder
 import API from '../../config/API';
 import Spinner from 'react-native-loading-spinner-overlay';
 
-export default class MissingPersonsNewsFeed extends Component {
+export default class MedicalHelpNewsFeed extends Component {
 
     constructor(props) {
         super(props);
         this.state = {
             loading:false,
-            missingp_data:[],
+            medical_helpdata:[],
         }
     }
 
@@ -38,7 +38,7 @@ export default class MissingPersonsNewsFeed extends Component {
     }
 
     componentWillMount(){
-        this.API_Get_MissingPersons();
+        this.API_Get_MedHelpReports();
     }
     
     componentDidMount(){
@@ -56,10 +56,10 @@ export default class MissingPersonsNewsFeed extends Component {
     }
 
     //Get All Missing Persons Details API function
-    API_Get_MissingPersons = () => {
+    API_Get_MedHelpReports = () => {
         this.setState({loading:true})
 
-        fetch(API.API_GET_MISSING_PERSONS,{
+        fetch(API.API_GET_MEDHELP_REPORTS,{
             method:'GET',
             headers:{
                 'Content-Type': 'application/json',
@@ -69,7 +69,7 @@ export default class MissingPersonsNewsFeed extends Component {
             .then((responseText) => {
                 this.setState({loading:false})
                 if(responseText.data[0].status_code == '200'){
-                    this.setState({missingp_data:responseText.data})
+                    this.setState({medical_helpdata:responseText.data})
                 }else{
 
                 }
@@ -99,7 +99,7 @@ export default class MissingPersonsNewsFeed extends Component {
             <FlatList 
                 style={styles.tasks}
                 columnWrapperStyle={styles.listContainer}
-                data={this.state.missingp_data}
+                data={this.state.medical_helpdata}
                 keyExtractor= {(item) => {
                     return item.id;
                 }}
@@ -107,7 +107,7 @@ export default class MissingPersonsNewsFeed extends Component {
                 return (
                     <TouchableOpacity style={[styles.card, {borderColor:AppStyles.primaryColor}]} onPress={() => {this.clickEventListener(item)}}>
                     <View style={styles.cardContent}>
-                        <Text style={[styles.description]}>Missing person in {item.Last_Seen_Location}</Text>
+                        <Text style={[styles.description]}>{item.Help_Title}</Text>
                         <Text style={styles.date}>Reported By : {item.Reporter_Name}</Text>
                     </View>
                     </TouchableOpacity>

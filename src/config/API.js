@@ -15,6 +15,8 @@ const API_REPORT_MISSING_PERSON= PROTOCOL+HOST+'/emeergency-lk/api/report-miss-p
 const API_MDEICAL_HELP = PROTOCOL+HOST+'/emeergency-lk/api/report-medical-help.php'
 const API_MISSINGP_COUNT = PROTOCOL+HOST+'/emeergency-lk/api/missingp-count.php'
 const API_GET_MISSING_PERSONS = PROTOCOL+HOST+'/emeergency-lk/api/get-missing-persons.php'
+const API_GET_MEDHELP_COUNT = PROTOCOL+HOST+'/emeergency-lk/api/get-medhelp-count.php'
+const API_GET_MEDHELP_REPORTS = PROTOCOL+HOST+'/emeergency-lk/api/get-medhelp-reports.php'
 
 //Exporting All API Links to Use
 export default
@@ -27,6 +29,8 @@ export default
     API_MDEICAL_HELP:API_MDEICAL_HELP,
     API_MISSINGP_COUNT:API_MISSINGP_COUNT,
     API_GET_MISSING_PERSONS:API_GET_MISSING_PERSONS,
+    API_GET_MEDHELP_COUNT:API_GET_MEDHELP_COUNT,
+    API_GET_MEDHELP_REPORTS:API_GET_MEDHELP_REPORTS,
 }
     
  
