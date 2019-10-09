@@ -12,7 +12,8 @@ import {
     ScrollView,
     TouchableOpacity,
     TextInput,
-    Alert
+    Alert,
+    BackHandler
 } from 'react-native';
 import AsyncStorage from '@react-native-community/async-storage';
 import RadioForm, {RadioButton, RadioButtonInput, RadioButtonLabel} from 'react-native-simple-radio-button';
@@ -49,8 +50,12 @@ export default class ReportCrime extends Component {
         }
     }
     
-    componentWillMount(){
+    componentDidMount(){
+        BackHandler.addEventListener('hardwareBackPress', this.backButtonOnPress);
+    }
 
+    componentWillUnmount(){
+        BackHandler.removeEventListener('hardwareBackPress', this.backButtonOnPress);
     }
 
     //Date Picker Methods

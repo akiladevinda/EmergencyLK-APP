@@ -11,7 +11,8 @@ import {
     ScrollView,
     TextInput,
     Image,
-    Alert
+    Alert,
+    BackHandler
 } from 'react-native';
 import HeaderPrimary from '../../components/Header/HeaderPrimary';
 import Assets from '../../config/Assets';
@@ -49,7 +50,17 @@ export default class MedicalHelp extends Component {
     }
 
     componentDidMount(){
+        BackHandler.addEventListener('hardwareBackPress', this.backButtonOnPress);
+    }
 
+    componentWillUnmount(){
+        BackHandler.removeEventListener('hardwareBackPress', this.backButtonOnPress);
+    }
+
+    //Back Button Press Event
+    backButtonOnPress = () => {
+        this.props.navigation.goBack();
+        return true;
     }
 
     //Home Navigation Method
@@ -145,11 +156,7 @@ export default class MedicalHelp extends Component {
         });
     }
 
-    //Back Button Press Event
-    backButtonOnPress = () => {
-        this.props.navigation.goBack();
-        return true;
-    }
+
 
     render() {
         return (

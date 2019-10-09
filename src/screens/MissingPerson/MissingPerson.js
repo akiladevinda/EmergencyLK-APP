@@ -11,7 +11,8 @@ import {
     Image,
     ScrollView,
     TextInput,
-    Alert
+    Alert,
+    BackHandler
 } from 'react-native';
 import HeaderPrimary from '../../components/Header/HeaderPrimary';
 import Assets from '../../config/Assets';
@@ -50,6 +51,14 @@ export default class MissingPerson extends Component {
             ],
             loading:false,
         }
+    }
+
+    componentDidMount(){
+        BackHandler.addEventListener('hardwareBackPress', this.backButtonOnPress);
+    }
+
+    componentWillUnmount(){
+        BackHandler.removeEventListener('hardwareBackPress', this.backButtonOnPress);
     }
 
     //Back Button Press Event

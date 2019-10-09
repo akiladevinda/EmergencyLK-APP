@@ -7,7 +7,8 @@ import React, { Component } from 'react';
 import { 
     View,
     Text,
-    StyleSheet
+    StyleSheet,
+    BackHandler
 } from 'react-native';
 import HeaderPrimary from '../../components/Header/HeaderPrimary';
 
@@ -17,6 +18,14 @@ export default class TsunamiAlerts extends Component {
         super(props);
         this.state = {
         }
+    }
+
+    componentDidMount(){
+        BackHandler.addEventListener('hardwareBackPress', this.backButtonOnPress);
+    }
+
+    componentWillUnmount(){
+        BackHandler.removeEventListener('hardwareBackPress', this.backButtonOnPress);
     }
 
     //Back Button Press Event

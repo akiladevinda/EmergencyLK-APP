@@ -9,7 +9,8 @@ import {
     Text,
     StyleSheet,
     Image,
-    Alert
+    Alert,
+    BackHandler
 } from 'react-native';
 import AsyncStorage from '@react-native-community/async-storage';
 import HeaderPrimary from '../../components/Header/HeaderPrimary';
@@ -28,6 +29,14 @@ export default class MyProfile extends Component {
             logged_useremail:'',
             loading:false
         }
+    }
+
+    componentDidMount(){
+        BackHandler.addEventListener('hardwareBackPress', this.backButtonOnPress);
+    }
+
+    componentWillUnmount(){
+        BackHandler.removeEventListener('hardwareBackPress', this.backButtonOnPress);
     }
     
     componentWillMount(){
