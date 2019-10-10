@@ -43,13 +43,13 @@ const styles = StyleSheet.create({
         width:40,
         height:40,
         resizeMode:'contain',
-        marginTop:Metrics.DEVICE_HEIGHT/40
+        marginTop:Platform.OS === 'android' ? Metrics.DEVICE_HEIGHT/40 : Metrics.DEVICE_HEIGHT/25,
     },
     headerTitle:{
         fontFamily:AppStyles.primaryFontBold,
         fontSize:20,
         color:AppStyles.colorWhite,
-        marginTop:Metrics.DEVICE_HEIGHT/30,
+        marginTop:Platform.OS === 'android' ? Metrics.DEVICE_HEIGHT/30 : Metrics.DEVICE_HEIGHT/20,
         marginLeft:8
     }
 });
