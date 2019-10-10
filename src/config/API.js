@@ -17,6 +17,9 @@ const API_MISSINGP_COUNT = PROTOCOL+HOST+'/emeergency-lk/api/missingp-count.php'
 const API_GET_MISSING_PERSONS = PROTOCOL+HOST+'/emeergency-lk/api/get-missing-persons.php'
 const API_GET_MEDHELP_COUNT = PROTOCOL+HOST+'/emeergency-lk/api/get-medhelp-count.php'
 const API_GET_MEDHELP_REPORTS = PROTOCOL+HOST+'/emeergency-lk/api/get-medhelp-reports.php'
+const API_VIEW_TSUNAMI_ALERTS = PROTOCOL+HOST+'/emeergency-lk/api/admin/view-tsunami-alerts.php'
+const API_VIEW_FLOOD_ALERTS = PROTOCOL+HOST+'/emeergency-lk/api/admin/view-flood-alerts.php'
+const API_VIEW_EQ_ALERTS = PROTOCOL+HOST+'/emeergency-lk/api/admin/view-earthquake-alerts.php'
 
 //Exporting All API Links to Use
 export default
@@ -31,6 +34,9 @@ export default
     API_GET_MISSING_PERSONS:API_GET_MISSING_PERSONS,
     API_GET_MEDHELP_COUNT:API_GET_MEDHELP_COUNT,
     API_GET_MEDHELP_REPORTS:API_GET_MEDHELP_REPORTS,
+    API_VIEW_TSUNAMI_ALERTS:API_VIEW_TSUNAMI_ALERTS,
+    API_VIEW_FLOOD_ALERTS:API_VIEW_FLOOD_ALERTS,
+    API_VIEW_EQ_ALERTS:API_VIEW_EQ_ALERTS,
 }
     
  
