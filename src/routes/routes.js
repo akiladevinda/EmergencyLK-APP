@@ -22,6 +22,7 @@ import MyProfile from "../screens/MyProfile/MyProfile";
 import MissingPersonsNewsFeed from "../screens/MissingPerson/MissingPersonsNewsFeed";
 import MedicalHelpNewsFeed from "../screens/MedicalHelp/MedicalHelpNewsFeed";
 import MedHelpViewMore from "../screens/MedicalHelp/MedHelpViewMore";
+import MissingPerViewMore from "../screens/MissingPerson/MissingPerViewMore";
 
 //Creating Stack Navigator for All Routes in Application
 const AppNavigator = createStackNavigator({
@@ -125,6 +126,13 @@ const AppNavigator = createStackNavigator({
       },
     MedHelpViewMore: {
           screen:MedHelpViewMore,
+          navigationOptions: { 
+            header: null,  
+            gesturesEnabled: false 
+          },   
+      },
+    MissingPerViewMore: {
+          screen:MissingPerViewMore,
           navigationOptions: { 
             header: null,  
             gesturesEnabled: false 

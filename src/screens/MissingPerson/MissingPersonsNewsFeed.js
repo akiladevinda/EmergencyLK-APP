@@ -22,6 +22,7 @@ import AppStyles from '../../config/AppStyles';
 import CustomButtonBorder from '../../components/CustomButton/CustomButtonBorder';
 import API from '../../config/API';
 import Spinner from 'react-native-loading-spinner-overlay';
+import MissingPerViewMore from './MissingPerViewMore';
 
 export default class MissingPersonsNewsFeed extends Component {
 
@@ -34,7 +35,7 @@ export default class MissingPersonsNewsFeed extends Component {
     }
 
     clickEventListener = (item) => {
-        Alert.alert("Item selected: "+item.description)
+        this.props.navigation.navigate("MissingPerViewMore",{screen:MissingPerViewMore,MisiingPerson:item})
     }
 
     componentWillMount(){

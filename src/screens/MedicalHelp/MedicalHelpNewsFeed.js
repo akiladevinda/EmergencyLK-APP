@@ -93,7 +93,7 @@ export default class MedicalHelpNewsFeed extends Component {
         return (
             <View style={styles.container}>
             <HeaderPrimary 
-            title='All Missing Persons'
+            title='All Mecial Help'
             onPress={ () => this.backButtonOnPress()}
             />
 
