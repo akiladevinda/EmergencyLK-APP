@@ -4,8 +4,8 @@
  */
 
 //Protocol and Host Links
-const PROTOCOL = 'http://';
-const HOST = '10.0.2.2'; //For Android emulator we are using ip address instead of localhost name ios-> localhost
+const PROTOCOL = 'https://';
+const HOST = 'emergencylk.000webhostapp.com'; //For Android emulator we are using ip address instead of localhost name ios-> localhost
 //API LINKS
 const API_REGISTER = PROTOCOL+HOST+'/emeergency-lk/api/user-register.php'
 const API_LOGIN = PROTOCOL+HOST+'/emeergency-lk/api/user-login.php'
