@@ -22,6 +22,7 @@ import AppStyles from '../../config/AppStyles';
 import CustomButtonBorder from '../../components/CustomButton/CustomButtonBorder';
 import API from '../../config/API';
 import Spinner from 'react-native-loading-spinner-overlay';
+import MedHelpViewMore from './MedHelpViewMore';
 
 export default class MedicalHelpNewsFeed extends Component {
 
@@ -34,7 +35,8 @@ export default class MedicalHelpNewsFeed extends Component {
     }
 
     clickEventListener = (item) => {
-        Alert.alert("Item selected: "+item.description)
+        // Alert.alert("Item selected: "+item.description)
+        this.props.navigation.navigate("MedHelpViewMore",{screen:MedHelpViewMore , Help:item})
     }
 
     componentWillMount(){
@@ -167,6 +169,7 @@ const styles = StyleSheet.create({
         fontSize:14,
         flex:1,
         color:"#696969",
-        marginTop:5
+        marginTop:5,
+        fontFamily:AppStyles.primaryFont
       },
 });

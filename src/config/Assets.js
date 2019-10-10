@@ -28,7 +28,9 @@ const Assets = {
     CRIME_TIME : require('../assets/crime/time.png'),
     PERSON_AGE:require('../assets/crime/age.png'),
     PERSON_HEIGHT:require('../assets/crime/height.png'),
-    
+    IC_GET_CALL : require('../assets/button/call.png'),
+    IC_GET_EMAIL : require('../assets/button/email.png'),
+
 };
 
 

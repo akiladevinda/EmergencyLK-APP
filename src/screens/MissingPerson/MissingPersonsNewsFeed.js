@@ -167,6 +167,7 @@ const styles = StyleSheet.create({
         fontSize:14,
         flex:1,
         color:"#696969",
-        marginTop:5
+        marginTop:5,
+        fontFamily:AppStyles.primaryFont
       },
 });
