@@ -1,5 +1,5 @@
 /**
- * Author : Akila Devinda Rathnayaka 
+ * EmergencyLK
  * Status Bar Component
  */
 

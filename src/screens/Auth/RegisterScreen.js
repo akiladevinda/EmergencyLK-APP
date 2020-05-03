@@ -11,7 +11,8 @@ import {
     ScrollView,
     Image,
     TextInput,
-    Alert
+    Alert,
+    BackHandler
 } from 'react-native';
 import AsyncStorage from '@react-native-community/async-storage';
 import DeviceInfo from 'react-native-device-info';
@@ -43,6 +44,14 @@ export default class RegisterScreen extends Component {
             {label: 'Male', value: 0 },
             {label: 'Female', value: 1 }]
         }
+    }
+
+    componentDidMount(){
+        BackHandler.addEventListener('hardwareBackPress', this.backButtonOnPress);
+    }
+
+    componentWillUnmount(){
+        BackHandler.removeEventListener('hardwareBackPress', this.backButtonOnPress);
     }
 
     componentWillMount(){
